@@ -105,3 +105,40 @@ En lugar de devolver una vista, se puede redirigir a otra ruta:
 ```php
 return redirect()->route('inicio'); // Redirige a la ruta con nombre 'inicio'
 ```
+
+## Vistas
+
+Las **vistas** en Laravel se crean en la carpeta `resources/views/` y contienen la estructura **HTML** de la página.
+
+### Devolver una vista desde un controlador:
+
+Para mostrar una vista desde un **método del controlador**, se usa:
+
+```php
+return view('nombreVista');
+```
+
+**No es necesario** indicar la carpeta `resources/views/` ni la extensión `.blade.php`.
+
+### Convención de nombres:
+
+Se recomienda que el nombre de la vista coincida con el **método del controlador** que la devuelve y con la **tabla** con la que opera.  
+Ejemplo en `CursoController`:
+
+```php
+return view('cursos.create'); // Devuelto por el método create()
+```
+
+### Pasar parámetros a la vista:
+
+Se usa un **array asociativo** como segundo parámetro de `view()`:
+
+```php
+return view('nombreRuta', ['curso' => $curso]);
+```
+
+Si el **nombre del parámetro** coincide con la variable, se puede simplificar con `compact()`:
+
+```php
+return view('nombreRuta', compact('curso'));
+```
